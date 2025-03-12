@@ -1,10 +1,10 @@
 import streamlit as st
 
 st.title("🔄 Unit Converter")
-st.markdown("### Effortless Conversion of Weight, Length, and Time")
+st.markdown("### Effortless Conversion of Weight, Length, Time and Temperature")
 st.write("🚀 Welcome! Choose a category, enter a value, and get instant conversions in real-time.")
 
-category = st.selectbox("📂 Choose a Conversion Type", ["Weight", "Length", "Time"])
+category = st.selectbox("📂 Choose a Conversion Type", ["Weight", "Length", "Time", "Temperature"])
 
 def convert_units(category, value, unit):
 
@@ -49,6 +49,20 @@ def convert_units(category, value, unit):
             return value * 24
         elif unit == "Hours to Days":
             return value / 24
+    
+    elif category == "Temperature":
+        if unit == "Celsius to Fahrenheit":
+            return value * 9/5 + 32
+        elif unit == "Fahrenheit to Celsius":
+            return (value - 32) * 5/9
+        elif unit == "Celsius to Kelvin":
+            return value + 273.15
+        elif unit == "Kelvin to Celsius":
+            return value - 273.15
+        elif unit == "Fahrenheit to Kelvin":
+            return (value - 32) * 5/9 + 273.15
+        elif unit == "Kelvin to Fahrenheit":
+            return (value - 273.15) * 9/5 + 32
         
     return 0
         
@@ -58,6 +72,8 @@ elif category == "Length":
     unit = st.selectbox("📏Select Conversion", ["Kilometers to Miles", "Miles to Kilometers", "Meters to Feet", "Feet to Meters", "Yards to Inches", "Inches to Yards"])
 elif category == "Time":
     unit = st.selectbox("⏳Select Conversion", ["Seconds to Minutes", "Minutes to Seconds", "Hours to Minutes", "Minutes to Hours", "Days to Hours", "Hours to Days"])
+elif category == "Temperature":
+    unit = st.selectbox("🌡️ Select Conversion", ["Celsius to Fahrenheit", "Fahrenheit to Celsius", "Celsius to Kelvin", "Kelvin to Celsius", "Fahrenheit to Kelvin", "Kelvin to Fahrenheit"])
 
 value = st.number_input("🔢 Enter a value to convert")
 
